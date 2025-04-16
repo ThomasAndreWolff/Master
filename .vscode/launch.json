@@ -15,7 +15,7 @@
             "value": "/opt/gurobi1201/linux64/lib"
           }
         ],
-        "preLaunchTask": "CMake: build",
+        "preLaunchTask": "build",
         "externalConsole": false,
         "MIMode": "gdb",
         "setupCommands": [
@@ -29,4 +29,3 @@
       }
     ]
   }
-  

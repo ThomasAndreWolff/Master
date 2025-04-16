@@ -16,8 +16,15 @@ set(GUROBI_HOME "/opt/gurobi1201/linux64")
 include_directories(${GUROBI_HOME}/include)
 link_directories(${GUROBI_HOME}/lib)
 
+# Include directories
+include_directories(${GUROBI_INCLUDE_DIRS} src)
+
 # Add the executable
-add_executable(gurobi_app src/main.cpp)
+add_executable(gurobi_app
+    src/main.cpp
+    src/reader/TSPLibReader.cpp
+    src/solver/TSPSolver.cpp
+)
 
 # Link against Gurobi libraries
 target_link_libraries(gurobi_app gurobi_c++ gurobi120 pthread m)

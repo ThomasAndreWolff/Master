@@ -23,7 +23,7 @@
       ]
     }
   },
-  "postCreateCommand": "./.devcontainer/setup.sh",
+  "postCreateCommand": "/workspace/.devcontainer/setup.sh",
   "remoteUser": "vscode",
   "workspaceFolder": "/workspace",
   "mounts": [

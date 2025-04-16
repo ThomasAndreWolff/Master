@@ -84,3 +84,6 @@ gurobi.log
 .env.local
 /bin/
 /lib/
+
+# Data
+/data/
