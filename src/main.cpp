@@ -5,6 +5,7 @@
 #include "mutation/ReverseMutation.h"
 #include <iostream>
 #include <memory>
+#include <vector>
 
 int main()
 {
@@ -21,17 +22,14 @@ int main()
         TSPSolver solver(env, cities);
         solver.solve();
 
-        // Solve TSP using Simulated Annealing with swap mutation
-        auto swapMutation = std::make_shared<SwapMutation>();
-        SimulatedAnnealingSolver saSolverSwap(cities, 1000.0, 0.995, 10000, swapMutation);
-        saSolverSwap.solve();
-        std::cout << "Simulated Annealing (Swap Mutation) Best Distance: " << saSolverSwap.getBestDistance() << std::endl;
+        // Solve TSP using Simulated Annealing with multiple mutation strategies
+        std::vector<std::shared_ptr<MutationStrategy>> mutations = {
+            std::make_shared<SwapMutation>(),
+            std::make_shared<ReverseMutation>()};
 
-        // Solve TSP using Simulated Annealing with reverse mutation
-        auto reverseMutation = std::make_shared<ReverseMutation>();
-        SimulatedAnnealingSolver saSolverReverse(cities, 1000.0, 0.995, 10000, reverseMutation);
-        saSolverReverse.solve();
-        std::cout << "Simulated Annealing (Reverse Mutation) Best Distance: " << saSolverReverse.getBestDistance() << std::endl;
+        SimulatedAnnealingSolver saSolver(cities, 1000.0, 0.995, 10000, mutations);
+        saSolver.solve();
+        std::cout << "Simulated Annealing (Multiple Mutations) Best Distance: " << saSolver.getBestDistance() << std::endl;
     }
     catch (GRBException &e)
     {

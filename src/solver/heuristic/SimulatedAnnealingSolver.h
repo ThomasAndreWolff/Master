@@ -21,13 +21,13 @@ private:
     double coolingRate;
     int maxIterations;
 
-    std::shared_ptr<MutationStrategy> mutationStrategy;
+    std::vector<std::shared_ptr<MutationStrategy>> mutationStrategies;
 
     double calculateDistance(const std::pair<double, double> &a, const std::pair<double, double> &b);
     double calculateTourDistance(const std::vector<int> &tour);
 
 public:
-    SimulatedAnnealingSolver(const std::vector<std::pair<double, double>> &cities, double initialTemp, double coolingRate, int maxIterations, std::shared_ptr<MutationStrategy> mutationStrategy);
+    SimulatedAnnealingSolver(const std::vector<std::pair<double, double>> &cities, double initialTemp, double coolingRate, int maxIterations, const std::vector<std::shared_ptr<MutationStrategy>> &mutationStrategies);
     void solve();
     const std::vector<int> &getBestTour() const;
     double getBestDistance() const;

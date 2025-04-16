@@ -4,8 +4,8 @@
 #include <numeric>
 #include <random>
 
-SimulatedAnnealingSolver::SimulatedAnnealingSolver(const std::vector<std::pair<double, double>> &cities, double initialTemp, double coolingRate, int maxIterations, std::shared_ptr<MutationStrategy> mutationStrategy)
-    : cities(cities), bestDistance(std::numeric_limits<double>::max()), initialTemp(initialTemp), coolingRate(coolingRate), maxIterations(maxIterations), mutationStrategy(std::move(mutationStrategy))
+SimulatedAnnealingSolver::SimulatedAnnealingSolver(const std::vector<std::pair<double, double>> &cities, double initialTemp, double coolingRate, int maxIterations, const std::vector<std::shared_ptr<MutationStrategy>> &mutationStrategies)
+    : cities(cities), bestDistance(std::numeric_limits<double>::max()), initialTemp(initialTemp), coolingRate(coolingRate), maxIterations(maxIterations), mutationStrategies(mutationStrategies)
 {
     rng.seed(std::chrono::steady_clock::now().time_since_epoch().count());
 }
@@ -42,7 +42,11 @@ void SimulatedAnnealingSolver::solve()
     for (int iter = 0; iter < maxIterations; ++iter)
     {
         std::vector<int> neighbor = currentTour;
-        mutationStrategy->mutate(neighbor, rng);
+
+        // Randomly select a mutation strategy
+        std::uniform_int_distribution<int> dist(0, mutationStrategies.size() - 1);
+        int selectedMutation = dist(rng);
+        mutationStrategies[selectedMutation]->mutate(neighbor, rng);
 
         double neighborDistance = calculateTourDistance(neighbor);
 
