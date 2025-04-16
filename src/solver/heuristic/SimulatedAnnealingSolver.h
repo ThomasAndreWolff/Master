@@ -1,0 +1,36 @@
+#ifndef SIMULATED_ANNEALING_SOLVER_H
+#define SIMULATED_ANNEALING_SOLVER_H
+
+#include <vector>
+#include <utility>
+#include <random>
+#include <chrono>
+#include <limits>
+#include <memory>
+#include "mutation/MutationStrategy.h" // Include the refactored MutationStrategy header
+
+class SimulatedAnnealingSolver
+{
+private:
+    const std::vector<std::pair<double, double>> &cities;
+    std::vector<int> bestTour;
+    double bestDistance;
+    std::mt19937 rng;
+
+    double initialTemp;
+    double coolingRate;
+    int maxIterations;
+
+    std::shared_ptr<MutationStrategy> mutationStrategy;
+
+    double calculateDistance(const std::pair<double, double> &a, const std::pair<double, double> &b);
+    double calculateTourDistance(const std::vector<int> &tour);
+
+public:
+    SimulatedAnnealingSolver(const std::vector<std::pair<double, double>> &cities, double initialTemp, double coolingRate, int maxIterations, std::shared_ptr<MutationStrategy> mutationStrategy);
+    void solve();
+    const std::vector<int> &getBestTour() const;
+    double getBestDistance() const;
+};
+
+#endif // SIMULATED_ANNEALING_SOLVER_H

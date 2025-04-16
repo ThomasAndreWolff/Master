@@ -23,7 +23,10 @@ include_directories(${GUROBI_INCLUDE_DIRS} src)
 add_executable(gurobi_app
     src/main.cpp
     src/reader/TSPLibReader.cpp
-    src/solver/TSPSolver.cpp
+    src/solver/exact/TSPSolver.cpp
+    src/solver/heuristic/SimulatedAnnealingSolver.cpp
+    src/mutation/SwapMutation.cpp
+    src/mutation/ReverseMutation.cpp
 )
 
 # Link against Gurobi libraries
