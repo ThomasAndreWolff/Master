@@ -1,0 +1,22 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 19
+    },
+    "configurePresets": [
+      {
+        "name": "dev",
+        "displayName": "Default Dev Preset",
+        "generator": "Unix Makefiles",
+        "description": "Use system GCC/G++ inside Dev Container",
+        "binaryDir": "${sourceDir}/build",
+        "cacheVariables": {
+          "CMAKE_BUILD_TYPE": "Debug",
+          "CMAKE_C_COMPILER": "/usr/bin/gcc",
+          "CMAKE_CXX_COMPILER": "/usr/bin/g++"
+        }
+      }
+    ]
+  }
+  

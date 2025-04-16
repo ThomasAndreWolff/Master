@@ -1,0 +1,86 @@
+# Build-Verzeichnisse
+/build/
+/out/
+/cmake-build-*/
+
+# Kompilierte Objekt-Dateien
+*.o
+*.obj
+*.so
+*.a
+*.dll
+*.lib
+*.exe
+*.out
+*.app
+
+# CMake-generierte Dateien
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# IDE-Dateien
+## Visual Studio / VS Code
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+## JetBrains IDEs
+.idea/
+*.iml
+*.iws
+cmake-build-*/
+
+# Betriebssystemspezifische Dateien
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Gurobi-spezifische Dateien
+gurobi.log
+*.lp
+*.mps
+*.lic
+
+# Temporäre Dateien und Backups
+*.swp
+*~
+*.bak
+*.tmp
+
+# Debug-Dateien
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Dependency Directories
+/vcpkg_installed/
+/conan/
+/vendor/
+/third_party/bin/
+/third_party/lib/
+
+# Andere
+.env
+.env.local
+/bin/
+/lib/

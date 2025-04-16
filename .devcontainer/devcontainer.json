@@ -1,0 +1,35 @@
+{
+  "name": "C++ Development",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "cmake.sourceDirectory": "${workspaceFolder}",
+        "cmake.buildDirectory": "${workspaceFolder}/build",
+        "cmake.configureOnOpen": true,
+        "cmake.preferredConfigurePreset": "dev",
+        "cmake.preferredBuildPreset": "dev",
+        "debug.defaultLaunchConfiguration": "Default CMake",
+        "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+
+      },
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools-extension-pack"
+      ]
+    }
+  },
+  "postCreateCommand": "./.devcontainer/setup.sh",
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "containerEnv": {
+    "GRB_LICENSE_FILE": "/workspace/gurobi.lic"
+  }
+}
