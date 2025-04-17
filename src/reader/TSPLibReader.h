@@ -1,17 +1,16 @@
 #ifndef TSPLIBREADER_H
 #define TSPLIBREADER_H
 
-#include <vector>
 #include <string>
 #include <utility>
+#include <vector>
 
-class TSPLibReader
-{
-public:
-    explicit TSPLibReader(const std::string &filePath);
+class TSPLibReader {
+  public:
+    explicit TSPLibReader(const std::string& filePath);
     std::vector<std::pair<double, double>> readData();
 
-private:
+  private:
     std::string filePath;
 };
 

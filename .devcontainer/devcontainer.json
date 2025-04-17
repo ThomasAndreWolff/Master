@@ -14,10 +14,12 @@
         "cmake.preferredBuildPreset": "dev",
         "debug.defaultLaunchConfiguration": "Default CMake",
         "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+        "clang-format.executable": "/usr/bin/clang-format",
         "[cpp]": {
           "editor.defaultFormatter": "xaver.clang-format",
           "editor.formatOnSave": true
-        }
+        },
+         "C_Cpp.errorSquiggles": "disabled"
       },
       "extensions": [
         "ms-vscode.cpptools",

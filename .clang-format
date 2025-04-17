@@ -1,0 +1,87 @@
+BasedOnStyle: LLVM
+
+# Use modern C++ as baseline
+Standard: Latest
+
+# Indentation like modern C++ codebases
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+
+# Braces: Same line for functions, new line for control statements (more common in C++)
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false
+
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortBlocksOnASingleLine: Empty
+
+# Spaces for readability
+SpaceBeforeParens: ControlStatements
+SpaceAfterCStyleCast: true
+SpacesInParentheses: false
+SpacesInAngles: false
+SpacesInContainerLiterals: false
+SpacesInSquareBrackets: false
+
+# Alignment for clean TS-style formatting
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignTrailingComments: true
+AlignOperands: true
+
+# Includes
+SortIncludes: true
+IncludeBlocks: Merge
+IncludeCategories:
+  - Regex: '^<.*\.h>'
+    Priority: 1
+  - Regex: '^".*\.h"'
+    Priority: 2
+IncludeIsMainRegex: '([-_]?test)?$'
+
+# Keep things compact like TS
+BinPackArguments: false
+BinPackParameters: false
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 2
+
+# Comments
+ReflowComments: true
+Cpp11BracedListStyle: true
+
+# Misc
+PointerAlignment: Left
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
+FixNamespaceComments: true
+IndentCaseLabels: true
+SortUsingDeclarations: true
+
+# Penalties to control line breaking
+PenaltyBreakBeforeFirstCallParameter: 30
+PenaltyReturnTypeOnItsOwnLine: 60
+PenaltyBreakComment: 10
+PenaltyBreakString: 1000
+PenaltyBreakFirstLessLess: 60
+PenaltyExcessCharacter: 10
+
+# Additional modern options
+AlignEscapedNewlines: Right
+AllowAllParametersOfDeclarationOnNextLine: false
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: BeforeColon
+ColumnLimit: 100
