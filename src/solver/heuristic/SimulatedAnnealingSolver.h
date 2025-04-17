@@ -35,6 +35,7 @@ class SimulatedAnnealingSolver {
     void                    solve();
     const std::vector<int>& getBestTour() const;
     double                  getBestDistance() const;
+    std::vector<int> getBestTourAsVector() const; // New method to return the best tour as a vector
 };
 
 #endif // SIMULATED_ANNEALING_SOLVER_H

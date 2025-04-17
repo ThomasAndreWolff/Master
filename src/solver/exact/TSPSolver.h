@@ -9,11 +9,14 @@ class TSPSolver {
   private:
     GRBEnv&                                       env;
     const std::vector<std::pair<double, double>>& cities;
+    std::vector<int>                              initialSolution; // Store the initial solution
 
     double calculateDistance(const std::pair<double, double>& a, const std::pair<double, double>& b);
 
   public:
-    TSPSolver(GRBEnv& env, const std::vector<std::pair<double, double>>& cities);
+    TSPSolver(GRBEnv&                                       env,
+              const std::vector<std::pair<double, double>>& cities,
+              const std::vector<int>&                       initialSolution = {});
     void solve();
 };
 

@@ -3,7 +3,6 @@ FROM mcr.microsoft.com/devcontainers/cpp:ubuntu
 # Install general build tools
 RUN apt-get update && apt-get install -y \
     build-essential \
-    wget \
     clang-format \
     && apt-get clean
 

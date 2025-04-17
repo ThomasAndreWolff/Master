@@ -111,6 +111,10 @@ const std::vector<int>& SimulatedAnnealingSolver::getBestTour() const {
     return bestTour;
 }
 
+std::vector<int> SimulatedAnnealingSolver::getBestTourAsVector() const {
+    return bestTour;
+}
+
 double SimulatedAnnealingSolver::getBestDistance() const {
     return bestDistance;
 }

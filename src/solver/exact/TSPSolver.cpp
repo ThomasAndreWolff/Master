@@ -2,8 +2,10 @@
 #include <cmath>
 #include <iostream>
 
-TSPSolver::TSPSolver(GRBEnv& env, const std::vector<std::pair<double, double>>& cities)
-  : env(env), cities(cities) {}
+TSPSolver::TSPSolver(GRBEnv&                                       env,
+                     const std::vector<std::pair<double, double>>& cities,
+                     const std::vector<int>&                       initialSolution)
+  : env(env), cities(cities), initialSolution(initialSolution) {}
 
 double TSPSolver::calculateDistance(const std::pair<double, double>& a,
                                     const std::pair<double, double>& b) {
@@ -12,8 +14,7 @@ double TSPSolver::calculateDistance(const std::pair<double, double>& a,
 
 void TSPSolver::solve() {
     try {
-        GRBModel model(env);
-
+        GRBModel                         model(env);
         int                              n = cities.size();
         std::vector<std::vector<GRBVar>> vars(n, std::vector<GRBVar>(n));
 
@@ -41,6 +42,15 @@ void TSPSolver::solve() {
             }
             model.addConstr(outFlow == 1, "out_" + std::to_string(i));
             model.addConstr(inFlow == 1, "in_" + std::to_string(i));
+        }
+
+        // Set initial solution if provided
+        if (!initialSolution.empty()) {
+            for (size_t i = 0; i < initialSolution.size(); ++i) {
+                int from = initialSolution[i];
+                int to   = initialSolution[(i + 1) % initialSolution.size()];
+                vars[from][to].set(GRB_DoubleAttr_Start, 1.0);
+            }
         }
 
         // Optimize model
