@@ -29,7 +29,7 @@
       ]
     }
   },
-  "postCreateCommand": "/workspace/.devcontainer/setup.sh",
+  "postCreateCommand": "sed -i 's/\r$//' .devcontainer/post-create.sh && bash .devcontainer/post-create.sh",
   "remoteUser": "vscode",
   "workspaceFolder": "/workspace",
   "mounts": [

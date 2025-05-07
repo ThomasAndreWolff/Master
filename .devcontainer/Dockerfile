@@ -1,10 +1,24 @@
 FROM mcr.microsoft.com/devcontainers/cpp:ubuntu
 
-# Install general build tools
+# Add LLVM repository for latest Clang version
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
+    echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-16 main" >> /etc/apt/sources.list && \
+    apt-get update
+
+# Install general build tools and latest Clang
 RUN apt-get update && apt-get install -y \
     build-essential \
     clang-format \
+    clang-16 \
+    lldb-16 \
+    lld-16 \
+    libc++-16-dev \
+    libc++abi-16-dev \
     && apt-get clean
+
+# Create symbolic links for the latest Clang version
+RUN ln -sf /usr/bin/clang-16 /usr/bin/clang && \
+    ln -sf /usr/bin/clang++-16 /usr/bin/clang++
 
 # Install CMake 4.0.1
 RUN wget https://github.com/Kitware/CMake/releases/download/v4.0.1/cmake-4.0.1-linux-x86_64.sh && \

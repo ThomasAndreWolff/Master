@@ -9,14 +9,11 @@
 
 int main() {
     try {
-        // Initialize Gurobi environment
         GRBEnv env = GRBEnv();
 
-        // Read TSP data
         TSPLibReader reader("/workspace/data/pr1002.tsp");
         auto         cities = reader.readData();
 
-        // Solve TSP using Simulated Annealing with multiple mutation strategies
         std::vector<std::shared_ptr<MutationStrategy>> mutations = {
             std::make_shared<SwapMutation>(), std::make_shared<ReverseMutation>()};
 
@@ -25,11 +22,8 @@ int main() {
         std::cout << "Simulated Annealing (Multiple Mutations) Best Distance: "
                   << saSolver.getBestDistance() << std::endl;
 
-        // Get the best tour from Simulated Annealing
-        auto initialSolution = saSolver.getBestTourAsVector();
-
-        // Solve TSP using Gurobi with the initial solution
-        TSPSolver solver(env, cities, initialSolution);
+        TSPSolver solver(env, cities);
+        solver.setHeuristicSolution(saSolver.getBestTour());
         solver.solve();
     }
     catch (GRBException& e) {

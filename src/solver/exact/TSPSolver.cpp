@@ -2,14 +2,45 @@
 #include <cmath>
 #include <iostream>
 
-TSPSolver::TSPSolver(GRBEnv&                                       env,
-                     const std::vector<std::pair<double, double>>& cities,
-                     const std::vector<int>&                       initialSolution)
-  : env(env), cities(cities), initialSolution(initialSolution) {}
+TSPSolver::TSPSolver(GRBEnv& env, const std::vector<std::pair<double, double>>& cities)
+  : env(env), cities(cities) {}
 
 double TSPSolver::calculateDistance(const std::pair<double, double>& a,
                                     const std::pair<double, double>& b) {
     return std::sqrt(std::pow(a.first - b.first, 2) + std::pow(a.second - b.second, 2));
+}
+
+void TSPSolver::setHeuristicSolution(const std::vector<int>& tour) {
+    heuristicTour = tour;
+}
+
+void TSPSolver::TSPCallback::callback() {
+    if (where == GRB_CB_MIPSOL) {
+        std::cout << "MIP solution found." << std::endl;
+        // Use the heuristic solution if available
+        if (!heuristicTour.empty()) {
+            int                 n = cities.size();
+            std::vector<double> solution(n * n, 0.0);
+            std::vector<GRBVar> vars;
+
+            // Populate the solution and vars arrays
+            for (size_t i = 0; i < heuristicTour.size(); ++i) {
+                int from                = heuristicTour[i];
+                int to                  = heuristicTour[(i + 1) % heuristicTour.size()];
+                solution[from * n + to] = 1.0;
+                vars.push_back(
+                    model.getVarByName("x_" + std::to_string(from) + "_" + std::to_string(to)));
+            }
+
+            try {
+                std::cout << "Setting solution" << std::endl;
+                setSolution(vars.data(), solution.data(), vars.size());
+            }
+            catch (GRBException& e) {
+                std::cerr << "Error setting heuristic solution: " << e.getMessage() << std::endl;
+            }
+        }
+    }
 }
 
 void TSPSolver::solve() {
@@ -44,14 +75,9 @@ void TSPSolver::solve() {
             model.addConstr(inFlow == 1, "in_" + std::to_string(i));
         }
 
-        // Set initial solution if provided
-        if (!initialSolution.empty()) {
-            for (size_t i = 0; i < initialSolution.size(); ++i) {
-                int from = initialSolution[i];
-                int to   = initialSolution[(i + 1) % initialSolution.size()];
-                vars[from][to].set(GRB_DoubleAttr_Start, 1.0);
-            }
-        }
+        // Set the callback
+        TSPCallback callback(heuristicTour, cities, model);
+        model.setCallback(&callback);
 
         // Optimize model
         model.optimize();

@@ -9,14 +9,29 @@ class TSPSolver {
   private:
     GRBEnv&                                       env;
     const std::vector<std::pair<double, double>>& cities;
-    std::vector<int>                              initialSolution; // Store the initial solution
+    std::vector<int>                              heuristicTour; // Store the heuristic solution
 
     double calculateDistance(const std::pair<double, double>& a, const std::pair<double, double>& b);
 
+    class TSPCallback : public GRBCallback {
+      private:
+        const std::vector<int>&                       heuristicTour;
+        const std::vector<std::pair<double, double>>& cities;
+        GRBModel&                                     model; // Reference to the model
+
+      public:
+        TSPCallback(const std::vector<int>&                       heuristicTour,
+                    const std::vector<std::pair<double, double>>& cities,
+                    GRBModel&                                     model)
+          : heuristicTour(heuristicTour), cities(cities), model(model) {}
+
+      protected:
+        void callback() override;
+    };
+
   public:
-    TSPSolver(GRBEnv&                                       env,
-              const std::vector<std::pair<double, double>>& cities,
-              const std::vector<int>&                       initialSolution = {});
+    TSPSolver(GRBEnv& env, const std::vector<std::pair<double, double>>& cities);
+    void setHeuristicSolution(const std::vector<int>& tour); // Set heuristic solution
     void solve();
 };
 
