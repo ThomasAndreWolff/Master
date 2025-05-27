@@ -19,6 +19,13 @@ link_directories(${GUROBI_HOME}/lib)
 # Include directories
 include_directories(${GUROBI_INCLUDE_DIRS} src)
 
+# Add ParadisEO include and library paths
+include_directories(/usr/local/include)
+link_directories(/usr/local/lib)
+
+# Explicitly specify the path to ParadisEO libraries
+link_directories(/opt/paradiseo/build/lib) # Update this path if necessary
+
 # Add the executable
 add_executable(gurobi_app
     src/main.cpp
@@ -31,3 +38,10 @@ add_executable(gurobi_app
 
 # Link against Gurobi libraries
 target_link_libraries(gurobi_app gurobi_c++ gurobi120 pthread m)
+
+# Link ParadisEO libraries
+target_link_libraries(gurobi_app eo)
+
+# Include Conan
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_BINARY_DIR}/conan_toolchain.cmake" CACHE FILEPATH "Conan toolchain file")
+

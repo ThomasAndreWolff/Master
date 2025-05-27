@@ -1,0 +1,9 @@
+[requires]
+# Add your dependencies here, e.g., boost/1.81.0
+
+[generators]
+CMakeToolchain
+CMakeDeps
+
+[options]
+# Specify any package options here, e.g., boost:shared=True
