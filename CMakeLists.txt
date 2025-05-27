@@ -20,11 +20,15 @@ link_directories(${GUROBI_HOME}/lib)
 include_directories(${GUROBI_INCLUDE_DIRS} src)
 
 # Add ParadisEO include and library paths
-include_directories(/usr/local/include)
-link_directories(/usr/local/lib)
+set(PARADISEO_DIR /opt/paradiseo)
+set(PARADISEO_LIB_DIR ${PARADISEO_DIR}/build/lib)
 
-# Explicitly specify the path to ParadisEO libraries
-link_directories(/opt/paradiseo/build/lib) # Update this path if necessary
+include_directories(
+  /opt/paradiseo/eo/src
+  /opt/paradiseo/mo/src
+  /opt/paradiseo/moeo/src
+)
+link_directories(${PARADISEO_LIB_DIR})
 
 # Add the executable
 add_executable(gurobi_app
@@ -32,6 +36,7 @@ add_executable(gurobi_app
     src/reader/TSPLibReader.cpp
     src/solver/exact/TSPSolver.cpp
     src/solver/heuristic/SimulatedAnnealingSolver.cpp
+    src/solver/heuristic/SimulatedAnnealingParadiseo.cpp
     src/mutation/SwapMutation.cpp
     src/mutation/ReverseMutation.cpp
 )
@@ -40,7 +45,7 @@ add_executable(gurobi_app
 target_link_libraries(gurobi_app gurobi_c++ gurobi120 pthread m)
 
 # Link ParadisEO libraries
-target_link_libraries(gurobi_app eo)
+target_link_libraries(gurobi_app eo moeo)
 
 # Include Conan
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_BINARY_DIR}/conan_toolchain.cmake" CACHE FILEPATH "Conan toolchain file")

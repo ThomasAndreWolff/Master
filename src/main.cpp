@@ -5,7 +5,9 @@
 #include "mutation/SwapMutation.h"
 #include "reader/TSPLibReader.h"
 #include "solver/exact/TSPSolver.h"
+#include "solver/heuristic/SimulatedAnnealingParadiseo.h"
 #include "solver/heuristic/SimulatedAnnealingSolver.h"
+
 
 int main() {
     try {
@@ -21,6 +23,12 @@ int main() {
         saSolver.solve();
         std::cout << "Simulated Annealing (Multiple Mutations) Best Distance: "
                   << saSolver.getBestDistance() << std::endl;
+
+        // Verwende die neue Simulated Annealing Implementierung
+        SimulatedAnnealingParadiseo saParadiseo(cities);
+        saParadiseo.solve();
+        std::cout << "Simulated Annealing (ParadisEO) Best Distance: "
+                  << saParadiseo.getBestDistance() << std::endl;
 
         TSPSolver solver(env, cities);
         solver.setHeuristicSolution(saSolver.getBestTour());

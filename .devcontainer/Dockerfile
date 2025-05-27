@@ -42,6 +42,11 @@ RUN apt-get update && apt-get install -y \
     libboost-all-dev \
     libopenmpi-dev \
     openmpi-bin && \
+    libeigen3-dev && \
+    libopenmpi-dev && \
+    doxygen && \
+    graphviz && \
+    libgnuplot-iostream-dev && \
     apt-get clean
 
 # Install clangd 20.1.0
