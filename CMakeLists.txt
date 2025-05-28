@@ -36,7 +36,8 @@ add_executable(gurobi_app
     src/reader/TSPLibReader.cpp
     src/solver/exact/TSPSolver.cpp
     src/solver/heuristic/SimulatedAnnealingSolver.cpp
-    src/solver/heuristic/SimulatedAnnealingParadiseo.cpp
+    src/solver/heuristic/SimulatedAnnealingParadiseo.cpp 
+    src/solver/genetic/GeneticAlgorithmParadiseo.cpp 
     src/mutation/SwapMutation.cpp
     src/mutation/ReverseMutation.cpp
 )
@@ -45,7 +46,8 @@ add_executable(gurobi_app
 target_link_libraries(gurobi_app gurobi_c++ gurobi120 pthread m)
 
 # Link ParadisEO libraries
-target_link_libraries(gurobi_app eo moeo)
+set(PARADISEO_LIBS eo moeo eoutils)
+target_link_libraries(gurobi_app ${PARADISEO_LIBS})
 
 # Include Conan
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_BINARY_DIR}/conan_toolchain.cmake" CACHE FILEPATH "Conan toolchain file")

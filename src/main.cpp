@@ -5,9 +5,9 @@
 #include "mutation/SwapMutation.h"
 #include "reader/TSPLibReader.h"
 #include "solver/exact/TSPSolver.h"
+#include "solver/genetic/GeneticAlgorithmParadiseo.h"
 #include "solver/heuristic/SimulatedAnnealingParadiseo.h"
 #include "solver/heuristic/SimulatedAnnealingSolver.h"
-
 
 int main() {
     try {
@@ -29,6 +29,12 @@ int main() {
         saParadiseo.solve();
         std::cout << "Simulated Annealing (ParadisEO) Best Distance: "
                   << saParadiseo.getBestDistance() << std::endl;
+
+        // Use the new Genetic Algorithm implementation
+        GeneticAlgorithmParadiseo gaParadiseo(cities);
+        gaParadiseo.solve();
+        std::cout << "Genetic Algorithm (ParadisEO) Best Distance: " << gaParadiseo.getBestDistance()
+                  << std::endl;
 
         TSPSolver solver(env, cities);
         solver.setHeuristicSolution(saSolver.getBestTour());
