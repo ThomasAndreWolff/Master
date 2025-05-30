@@ -41,11 +41,11 @@ ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 RUN apt-get update && apt-get install -y \
     libboost-all-dev \
     libopenmpi-dev \
-    openmpi-bin && \
-    libeigen3-dev && \
-    libopenmpi-dev && \
-    doxygen && \
-    graphviz && \
+    openmpi-bin \
+    libeigen3-dev \
+    libopenmpi-dev \
+    doxygen \
+    graphviz \
     libgnuplot-iostream-dev && \
     apt-get clean
 
@@ -71,5 +71,4 @@ RUN apt-get update && apt-get install -y python3 python3-pip && \
 
 # Force reinstall PyYAML to avoid distutils uninstall issue
 RUN pip install --ignore-installed PyYAML && \
-    pip install conan && \
-    conan profile detect
+    pip install conan

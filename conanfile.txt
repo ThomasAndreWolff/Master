@@ -1,5 +1,6 @@
 [requires]
 # Add your dependencies here, e.g., boost/1.81.0
+sqlite3/3.49.1
 
 [generators]
 CMakeToolchain

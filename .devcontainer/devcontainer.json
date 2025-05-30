@@ -29,7 +29,8 @@
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.cmake-tools",
         "llvm-vs-code-extensions.vscode-clangd",
-        "xaver.clang-format"
+        "xaver.clang-format",
+        "alexcvzz.vscode-sqlite"
       ]
     }
   },
