@@ -22,7 +22,8 @@
         "C_Cpp.errorSquiggles": "disabled",
         "C_Cpp.intelliSenseEngine": "disabled",
         "clangd.path": "/usr/bin/clangd",
-        "clangd.arguments": ["--compile-commands-dir=${workspaceFolder}/build"]
+        "clangd.arguments": ["--compile-commands-dir=${workspaceFolder}/build"],
+        "sqlite.sqlite3": "sqlite3"
       },
       "extensions": [
         "ms-vscode.cpptools",

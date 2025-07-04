@@ -134,9 +134,9 @@ list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 # Definition of CMAKE_PREFIX_PATH, CMAKE_XXXXX_PATH
 # The Conan local "generators" folder, where this toolchain is saved.
 list(PREPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_LIST_DIR} )
-list(PREPEND CMAKE_LIBRARY_PATH "/home/vscode/.conan2/p/b/sqlit496d70af1cfcf/p/lib")
-list(PREPEND CMAKE_INCLUDE_PATH "/home/vscode/.conan2/p/b/sqlit496d70af1cfcf/p/include")
-set(CONAN_RUNTIME_LIB_DIRS "/home/vscode/.conan2/p/b/sqlit496d70af1cfcf/p/lib" )
+list(PREPEND CMAKE_LIBRARY_PATH "/home/vscode/.conan2/p/b/sqlitffb7829672da2/p/lib" "/home/vscode/.conan2/p/b/sqlit23a4a17e5047e/p/lib")
+list(PREPEND CMAKE_INCLUDE_PATH "/home/vscode/.conan2/p/b/sqlitffb7829672da2/p/include" "/home/vscode/.conan2/p/b/sqlit23a4a17e5047e/p/include")
+set(CONAN_RUNTIME_LIB_DIRS "/home/vscode/.conan2/p/b/sqlitffb7829672da2/p/lib" "/home/vscode/.conan2/p/b/sqlit23a4a17e5047e/p/lib" )
 
 endif()
 

@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install -y \
     libopenmpi-dev \
     doxygen \
     graphviz \
+    sqlite3 \
     libgnuplot-iostream-dev && \
     apt-get clean
 
