@@ -9,12 +9,6 @@
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
-        "environment": [
-          {
-            "name": "LD_LIBRARY_PATH",
-            "value": "/opt/gurobi1201/linux64/lib"
-          }
-        ],
         "preLaunchTask": "build",
         "externalConsole": false,
         "MIMode": "gdb",
