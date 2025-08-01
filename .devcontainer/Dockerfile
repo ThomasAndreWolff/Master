@@ -1,12 +1,15 @@
 FROM mcr.microsoft.com/devcontainers/cpp:ubuntu
 
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Add LLVM repository for latest Clang version
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
     echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-16 main" >> /etc/apt/sources.list && \
     apt-get update
 
 # Install general build tools and latest Clang
-RUN apt-get update && apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
     build-essential \
     clang-format \
     clang-16 \

@@ -26,14 +26,14 @@ foreach(_DEPENDENCY ${sqlite3_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(SQLite3_VERSION_STRING "3.49.1")
-set(SQLite3_INCLUDE_DIRS ${sqlite3_INCLUDE_DIRS_DEBUG} )
-set(SQLite3_INCLUDE_DIR ${sqlite3_INCLUDE_DIRS_DEBUG} )
-set(SQLite3_LIBRARIES ${sqlite3_LIBRARIES_DEBUG} )
-set(SQLite3_DEFINITIONS ${sqlite3_DEFINITIONS_DEBUG} )
+set(SQLite3_INCLUDE_DIRS ${sqlite3_INCLUDE_DIRS_RELEASE} )
+set(SQLite3_INCLUDE_DIR ${sqlite3_INCLUDE_DIRS_RELEASE} )
+set(SQLite3_LIBRARIES ${sqlite3_LIBRARIES_RELEASE} )
+set(SQLite3_DEFINITIONS ${sqlite3_DEFINITIONS_RELEASE} )
 
 
 # Only the last installed configuration BUILD_MODULES are included to avoid the collision
-foreach(_BUILD_MODULE ${sqlite3_BUILD_MODULES_PATHS_DEBUG} )
+foreach(_BUILD_MODULE ${sqlite3_BUILD_MODULES_PATHS_RELEASE} )
     message(${SQLite3_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

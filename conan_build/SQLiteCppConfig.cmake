@@ -26,14 +26,14 @@ foreach(_DEPENDENCY ${sqlitecpp_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(SQLiteCpp_VERSION_STRING "3.3.2")
-set(SQLiteCpp_INCLUDE_DIRS ${sqlitecpp_INCLUDE_DIRS_DEBUG} )
-set(SQLiteCpp_INCLUDE_DIR ${sqlitecpp_INCLUDE_DIRS_DEBUG} )
-set(SQLiteCpp_LIBRARIES ${sqlitecpp_LIBRARIES_DEBUG} )
-set(SQLiteCpp_DEFINITIONS ${sqlitecpp_DEFINITIONS_DEBUG} )
+set(SQLiteCpp_INCLUDE_DIRS ${sqlitecpp_INCLUDE_DIRS_RELEASE} )
+set(SQLiteCpp_INCLUDE_DIR ${sqlitecpp_INCLUDE_DIRS_RELEASE} )
+set(SQLiteCpp_LIBRARIES ${sqlitecpp_LIBRARIES_RELEASE} )
+set(SQLiteCpp_DEFINITIONS ${sqlitecpp_DEFINITIONS_RELEASE} )
 
 
 # Only the last installed configuration BUILD_MODULES are included to avoid the collision
-foreach(_BUILD_MODULE ${sqlitecpp_BUILD_MODULES_PATHS_DEBUG} )
+foreach(_BUILD_MODULE ${sqlitecpp_BUILD_MODULES_PATHS_RELEASE} )
     message(${SQLiteCpp_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

@@ -1,1 +1,1 @@
-. "/workspace/conan_build/conanrunenv-debug-x86_64.sh"
+. "/workspace/conan_build/conanrunenv-release-x86_64.sh"

@@ -27,7 +27,6 @@ endif()
 
 ########## 'arch_flags' block #############
 # Define C++ flags, C flags and linker flags from 'settings.arch'
-
 message(STATUS "Conan toolchain: Defining architecture flag: -m64")
 string(APPEND CONAN_CXX_FLAGS " -m64")
 string(APPEND CONAN_C_FLAGS " -m64")
@@ -101,6 +100,12 @@ endif()
 if(DEFINED CONAN_EXE_LINKER_FLAGS)
   string(APPEND CMAKE_EXE_LINKER_FLAGS_INIT " ${CONAN_EXE_LINKER_FLAGS}")
 endif()
+if(DEFINED CONAN_OBJCXX_FLAGS)
+  string(APPEND CMAKE_OBJCXX_FLAGS_INIT " ${CONAN_OBJCXX_FLAGS}")
+endif()
+if(DEFINED CONAN_OBJC_FLAGS)
+  string(APPEND CMAKE_OBJC_FLAGS_INIT " ${CONAN_OBJC_FLAGS}")
+endif()
 
 
 ########## 'extra_variables' block #############
@@ -110,7 +115,6 @@ endif()
 
 ########## 'try_compile' block #############
 # Blocks after this one will not be added when running CMake try/checks
-
 get_property( _CMAKE_IN_TRY_COMPILE GLOBAL PROPERTY IN_TRY_COMPILE )
 if(_CMAKE_IN_TRY_COMPILE)
     message(STATUS "Running toolchain IN_TRY_COMPILE")
@@ -134,9 +138,9 @@ list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 # Definition of CMAKE_PREFIX_PATH, CMAKE_XXXXX_PATH
 # The Conan local "generators" folder, where this toolchain is saved.
 list(PREPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_LIST_DIR} )
-list(PREPEND CMAKE_LIBRARY_PATH "/home/vscode/.conan2/p/b/sqlitffb7829672da2/p/lib" "/home/vscode/.conan2/p/b/sqlit23a4a17e5047e/p/lib")
-list(PREPEND CMAKE_INCLUDE_PATH "/home/vscode/.conan2/p/b/sqlitffb7829672da2/p/include" "/home/vscode/.conan2/p/b/sqlit23a4a17e5047e/p/include")
-set(CONAN_RUNTIME_LIB_DIRS "/home/vscode/.conan2/p/b/sqlitffb7829672da2/p/lib" "/home/vscode/.conan2/p/b/sqlit23a4a17e5047e/p/lib" )
+list(PREPEND CMAKE_LIBRARY_PATH "/home/vscode/.conan2/p/b/sqlitc2639146091ee/p/lib" "/home/vscode/.conan2/p/b/sqlit22ba46513915c/p/lib")
+list(PREPEND CMAKE_INCLUDE_PATH "/home/vscode/.conan2/p/b/sqlitc2639146091ee/p/include" "/home/vscode/.conan2/p/b/sqlit22ba46513915c/p/include")
+set(CONAN_RUNTIME_LIB_DIRS "/home/vscode/.conan2/p/b/sqlitc2639146091ee/p/lib" "/home/vscode/.conan2/p/b/sqlit22ba46513915c/p/lib" )
 
 endif()
 

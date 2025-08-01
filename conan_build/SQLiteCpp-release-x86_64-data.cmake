@@ -12,7 +12,7 @@ set(SQLite3_FIND_MODE "NO_MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(sqlitecpp_PACKAGE_FOLDER_RELEASE "/home/vscode/.conan2/p/b/sqlite597cbbcc346f/p")
+set(sqlitecpp_PACKAGE_FOLDER_RELEASE "/home/vscode/.conan2/p/b/sqlitc2639146091ee/p")
 set(sqlitecpp_BUILD_MODULES_PATHS_RELEASE )
 
 

@@ -10,13 +10,13 @@
     },
     "configurePresets": [
         {
-            "name": "conan-debug",
-            "displayName": "'conan-debug' config",
-            "description": "'conan-debug' configure using 'Unix Makefiles' generator",
+            "name": "conan-release",
+            "displayName": "'conan-release' config",
+            "description": "'conan-release' configure using 'Unix Makefiles' generator",
             "generator": "Unix Makefiles",
             "cacheVariables": {
                 "CMAKE_POLICY_DEFAULT_CMP0091": "NEW",
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Release"
             },
             "toolchainFile": "conan_toolchain.cmake",
             "binaryDir": "/workspace/conan_build"
@@ -24,15 +24,15 @@
     ],
     "buildPresets": [
         {
-            "name": "conan-debug",
-            "configurePreset": "conan-debug",
-            "jobs": 16
+            "name": "conan-release",
+            "configurePreset": "conan-release",
+            "jobs": 12
         }
     ],
     "testPresets": [
         {
-            "name": "conan-debug",
-            "configurePreset": "conan-debug"
+            "name": "conan-release",
+            "configurePreset": "conan-release"
         }
     ]
 }

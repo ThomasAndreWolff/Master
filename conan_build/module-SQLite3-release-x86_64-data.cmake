@@ -12,7 +12,7 @@ endif()
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(sqlite3_PACKAGE_FOLDER_RELEASE "/home/vscode/.conan2/p/b/sqlited2bd43bda550/p")
+set(sqlite3_PACKAGE_FOLDER_RELEASE "/home/vscode/.conan2/p/b/sqlit22ba46513915c/p")
 set(sqlite3_BUILD_MODULES_PATHS_RELEASE )
 
 

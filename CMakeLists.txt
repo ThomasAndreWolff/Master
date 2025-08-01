@@ -40,12 +40,16 @@ add_executable(gurobi_app
 
 target_include_directories(gurobi_app PRIVATE src)
 
-# Add Conan build dir to CMAKE_MODULE_PATH for find_package(SQLiteCpp)
-list(PREPEND CMAKE_MODULE_PATH "${CMAKE_BINARY_DIR}/../conan_build")
+# BESTE LÖSUNG: Verwende die vorgefertigten Conan Config-Files
+# Diese Methode funktioniert für ALLE Conan-Pakete automatisch!
 
-# Conan 2.x: Finde und linke SQLiteCpp
+# 1. CMAKE_PREFIX_PATH für Conan-Pakete setzen
+list(PREPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/conan_build")
+
+# 2. find_package für alle benötigten Pakete
 find_package(SQLiteCpp REQUIRED)
 
+# 3. Verwende die automatisch erstellten Targets
 target_link_libraries(gurobi_app PRIVATE SQLiteCpp)
 
 # Link gegen Gurobi
