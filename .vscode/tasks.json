@@ -7,7 +7,7 @@
             "command": "cmake",
             "args": [
                 "--build",
-                "${workspaceFolder}/build"
+                "${workspaceFolder}/build/"
             ],
             "group": {
                 "kind": "build",
@@ -15,7 +15,10 @@
             },
             "problemMatcher": {
                 "owner": "cpp",
-                "fileLocation": ["relative", "${workspaceFolder}"],
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
                 "pattern": {
                     "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
                     "file": 1,
@@ -25,7 +28,7 @@
                     "message": 5
                 }
             },
-            "detail": "Generated task for building the project using CMake with clang problem matcher."
+            "detail": "Build with cmake from conan's Debug output folder"
         }
     ]
 }

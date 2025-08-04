@@ -1,14 +1,45 @@
 #!/bin/bash
-# gurobi_cl
-# Create necessary directories
-mkdir -p build
-conan profile detect
+set -e
+cd /workspace
+
 export CC=clang
 export CXX=clang++
-conan install . --output-folder=conan_build --build=missing \
-  -s build_type=Debug \
-  -s compiler=clang \
-  -s compiler.version=16 \
-  -s compiler.libcxx=libstdc++11 \
-  -s compiler.cppstd=17
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=conan_build/conan_toolchain.cmake
+
+# Conan-Profil ggf. anlegen
+if ! conan profile list | grep -q "clang16"; then
+    mkdir -p ~/.conan2/profiles
+    cat > ~/.conan2/profiles/clang16 <<EOF
+[settings]
+os=Linux
+arch=x86_64
+compiler=clang
+compiler.version=16
+compiler.libcxx=libstdc++11
+compiler.cppstd=17
+build_type=Debug
+EOF
+fi
+
+# Default-Profil anlegen (nur falls nicht vorhanden)
+if [ ! -f ~/.conan2/profiles/default ]; then
+    conan profile detect --force
+fi
+
+mkdir -p /workspace/build && cd /workspace/build
+
+# Abhängigkeiten installieren
+conan install .. \
+  --output-folder=. \
+  --profile:host=clang16 \
+  --profile:build=clang16 \
+  --build=missing \
+  -s build_type=Debug
+
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
+
+cmake --build .
+
+# Projekt bauen
+# conan build . \
+#   -s build_type=Debug \
+#   --build=missing
