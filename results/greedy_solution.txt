@@ -4,7 +4,7 @@ Solution Summary:
   Total Objective Cost: 140349300.97 €
   Total Vehicles Used:  332
   Feasible Solution:    YES
-  Solution Time:        0.050 seconds
+  Solution Time:        0.046 seconds
 
 Operation Statistics:
   Total Distance:       12780.5 km

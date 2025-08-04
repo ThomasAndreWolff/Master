@@ -1,8 +1,8 @@
 #pragma once
 
 #include "core/UnifiedSolution.hpp"
-#include "data/DataStructures.hpp"
 #include "data/DataLoader.hpp"
+#include "data/DataStructures.hpp"
 #include <string>
 
 namespace core {
@@ -21,16 +21,17 @@ class SolutionTransformer {
      * @return Unified solution
      */
     static UnifiedSolution transform(const data::MDVSPGreedySolution& greedySolution,
-                                   const data::DataLoader& dataLoader,
-                                   const std::string& problemInstance = "unknown");
+                                     const data::DataLoader&          dataLoader,
+                                     const std::string&               problemInstance = "unknown");
 
     /**
      * Transform exact solution to unified format (for future use)
      * @param exactSolution The exact solution to transform
-     * @param problemInstance Name of the problem instance  
+     * @param problemInstance Name of the problem instance
      * @return Unified solution
      */
-    // static UnifiedSolution transform(const ExactSolution& exactSolution, const std::string& problemInstance);
+    // static UnifiedSolution transform(const ExactSolution& exactSolution, const std::string&
+    // problemInstance);
 
   private:
     /**
