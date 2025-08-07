@@ -5,7 +5,7 @@
       "name": "Default CMake",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/mdvsp_solver",
+      "program": "${workspaceFolder}/build/ greedy_mdvsp",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
